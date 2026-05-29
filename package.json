@@ -549,7 +549,14 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@lobehub/editor",
-      "ffmpeg-static"
+      "ffmpeg-static",
+      "core-js",
+      "es5-ext",
+      "esbuild",
+      "msgpackr-extract",
+      "protobufjs",
+      "sharp",
+      "unrs-resolver"
     ],
     "overrides": {
       "@react-pdf/image": "3.0.4",
