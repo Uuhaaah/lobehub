@@ -1,15 +1,12 @@
 {
-  "buildCommand": "pnpm run build:vercel",
+  "buildCommand": "NODE_OPTIONS=--max-old-space-size=4096 pnpm run build:raw && pnpm run db:migrate",
+  "installCommand": "npx pnpm@10.26.2 install",
   "headers": [
     {
       "source": "/_spa/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800, stale-if-error=86400, immutable"
-        },
-        {
-          "key": "CDN-Cache-Control",
           "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800, stale-if-error=86400, immutable"
         }
       ]
@@ -32,7 +29,7 @@
       ]
     },
     {
-      "source": "/_dangerous_local_dev_proxy/:path*",
+      "source": "/_dangerous_local_dev_proxy/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -49,7 +46,6 @@
       ]
     }
   ],
-  "installCommand": "npx pnpm@10.26.2 install",
   "rewrites": [
     {
       "source": "/_dangerous_local_dev_proxy",
